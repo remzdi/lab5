@@ -1,7 +1,10 @@
-#pragma once
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+
 using namespace std;
 
 class TTriad {
@@ -9,29 +12,31 @@ public:
     int a, b, c;
 public:
     TTriad(int a = 0, int b = 0, int c = 0);
-    void Increase(int n, int m, int p);
-    void Decrease(int n, int m, int p);
-    void Print() const;
+    virtual void Increase(int n, int m, int p);
+    virtual void Decrease(int n, int m, int p);
+    virtual void Print() const;
 };
 
 class TTime : public TTriad {
 public:
     TTime(int a = 0, int b = 0, int c = 0);
+    void Print() const override;
 };
 
 class TDate : public TTriad {
 public:
     TDate(int a = 0, int b = 0, int c = 0);
-    TTime ToTime() const;
+    void Print() const override;
 };
 
-void GenerateDates(TDate* dates, int n);
-void GenerateTimes(TTime* times, int m);
+void GenerateDates(TTriad** triads, int n);
+void GenerateTimes(TTriad** triads, int m);
 void getInput(int& n, int& m);
-void generateDates(TDate* dates, int n);
-void printDates(TDate* dates, int n);
-void generateTimes(TTime* times, int m);
-void printTimes(TTime* times, int m);
-void printGoodDates(TDate* dates, int n);
-void printDecreasedDates(TDate* dates, int n);
-void increaseTimes(TTime* times, int m);
+void printDates(TTriad** triads, int n);
+void printTimes(TTriad** triads, int m);
+void printGoodDates(TTriad** triads, int n);
+void printDecreasedDates(TTriad** triads, int n);
+void increaseTimes(TTriad** triads, int m);
+void deleteTriads(TTriad** triads, int n);
+
+#endif  // FUNCTIONS_H
